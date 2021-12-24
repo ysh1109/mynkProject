@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472333150430",
+    "project_id": "locationtracker-c2eb8",
+    "storage_bucket": "locationtracker-c2eb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472333150430:android:cd8584d4e31399f511ba4f",
+        "android_client_info": {
+          "package_name": "com.mynkproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472333150430-hotd16jja05qv6hvqprn3f4oqjiililc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7qkAxM2mXq6bePr8kEZPYp_8uZlLu3wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472333150430-hotd16jja05qv6hvqprn3f4oqjiililc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
