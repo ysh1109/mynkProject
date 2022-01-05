@@ -76,11 +76,20 @@ const HomeScreen = ({route,navigation}) => {
     ] = useState('');
     const [userList,setUserList] = useState([])
     const cont = React.useContext(ListContext);
-    React.useEffect(async()=>{
+    React.useEffect(()=>{
+        firstRun()
+       
+
+     
+      
+    },[])
+
+    const firstRun = async() => {
       const value =  []
       setUsername(value)
       getOneTimeLocation()
       requestLocationPermission();
+      
         try {
           const response=firestore().collection('Users');
           const data=await response.get();
@@ -100,14 +109,9 @@ const HomeScreen = ({route,navigation}) => {
        catch (err) {
          //console.log("respsss
        }
-       return () => {
-        Geolocation.clearWatch(watchID);
-      };
-
-     
       
-    },[])
-
+       
+    }
     const intervalId = (value) => {
        BackgroundTimer.setInterval(() => {
         // this will be executed every 200 ms
@@ -265,6 +269,24 @@ const HomeScreen = ({route,navigation}) => {
       )
     };
 
+    const removeElement = async(id) => {
+      await firestore().collection('Users').doc(id).delete()
+
+      const response=firestore().collection('Users');
+      const data=await response.get();
+      console.log("data fetched from firebase",data)
+      const list = [];
+     data.docs.forEach(item=>{
+        
+         if(item.data()) {
+             const lstDoc = {ids:item.id,...item.data()}
+             console.log("fetched data from firebase",item.data())
+             list.push(lstDoc)
+             setUserList([...list])
+         }
+      
+     })
+    }
   
     const onSendLocation = ()=> {
   
@@ -272,7 +294,7 @@ const HomeScreen = ({route,navigation}) => {
       .collection('Users')
       .doc(route.params.username)
       .set({
-        name: username,
+        name: route.params.username,
         latitude:currentLatitude ,
         longitude:currentLongitude,
         time: new Date().toLocaleString()
@@ -292,15 +314,25 @@ const HomeScreen = ({route,navigation}) => {
         onPress={()=>navigation.navigate('Desc',{name:item.name,long:item.longitude,lat:item.latitude})}
         style={{height:SCREEN_HEIGHT/6,width:SCREEN_WIDTH-40,borderRadius:10,
           elevation:5,marginTop:5,marginBottom:5,
-        backgroundColor:'white',alignSelf:'center'}}>
-            <View style={{flex:1,flexDirection:'row'}}>
-              <View style={{flex:1,justifyContent:'center'}}>
-                <Text style={{fontSize:22,color:'#091527',fontWeight:'700',textAlign:'center'}}>name:{item.name}</Text>
-                  <Text style={{fontSize:22,color:'#091527',fontWeight:'700',textAlign:'center'}}>longitude:{item.longitude}</Text>
-                  <Text style={{fontSize:22,color:'#091527',fontWeight:'700',textAlign:'center'}}>latitude:{item.latitude}</Text>
+        backgroundColor:'gray',alignSelf:'center'}}>
+            <View style={{flex:1,flexDirection:'column'}}>
+              <View style={{flex:0.7,alignItems:'center',justifyContent:"center",marginTop:5}}>
+                <Text style={{fontSize:18,color:'#091527',fontWeight:'700',textAlign:'center'}}>name:{item.name}</Text>
+                  <Text style={{fontSize:18,color:'#091527',fontWeight:'700',textAlign:'center'}}>longitude:{item.longitude}</Text>
+                  <Text style={{fontSize:18,color:'#091527',fontWeight:'700',textAlign:'center'}}>latitude:{item.latitude}</Text>
                   <View style={{flexDirection:'row'}}>
                   <Text  style={{fontSize:18,color:'#233753',fontWeight:'700',alignSelf:'center'}}>{item.location}</Text> 
                   </View>
+              </View>
+              <View style={{flex:0.3}}>
+                <TouchableOpacity onPress={()=>removeElement(item.name)} style={styles.btnView} >
+                <Animatable.View
+                  animation="fadeInRight"  
+                style={[styles.btn,{position:'absolute',bottom:0,marginTop:20}]}>
+                  <Text style={styles.getStart}>Remove</Text>
+                
+                </Animatable.View>
+                </TouchableOpacity>
               </View>
           
             </View>
@@ -341,6 +373,7 @@ const HomeScreen = ({route,navigation}) => {
               justifyContent: 'center',
               alignItems: 'center',
               marginTop: 16,
+              color:'black'
             }}>
             Longitude: {currentLongitude}
           </Text>
@@ -349,6 +382,7 @@ const HomeScreen = ({route,navigation}) => {
               justifyContent: 'center',
               alignItems: 'center',
               marginTop: 16,
+              color:'black'
             }}>
             Latitude: {currentLatitude}
           </Text>
@@ -365,14 +399,14 @@ const HomeScreen = ({route,navigation}) => {
             />
             
           </View>
-          <View style={{marginTop: 10}}>
+          {/* <View style={{marginTop: 10}}>
             <Button
 
               title="Stop Location"
               onPress={()=>intervalId(true)}
             />
             
-          </View>
+          </View> */}
         </View>
       
       </View>
@@ -400,6 +434,12 @@ const HomeScreen = ({route,navigation}) => {
                </View>
             </View>
           
+           
+             {route.params.admin && userList.length == 0?  
+              <View style={{position:'absolute',display:'flex',justifyContent:'center',alignSelf:'center',marginTop:20}}>
+                <Text style={{fontSize:24,fontWeight:'700',color:'black',textAlign:'center'}}>No user present</Text>
+                </View>
+             :<></>}
           </Animatable.View>
         </View>
       );
@@ -410,7 +450,8 @@ const HomeScreen = ({route,navigation}) => {
 const styles = StyleSheet.create({
   boldText: {
     fontWeight:'700',
-    fontSize:24
+    fontSize:24,
+    color:'black'
   },
   upperSection:{
     flex:0.5,
@@ -430,26 +471,25 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor:'#2196f3',
-    height:50,
-    width:50,
+    height:'95%',
+    width:100,
     justifyContent:'center',
-
+    marginBottom:5,
     alignSelf:'center',
     borderRadius:10,
     
   },
   btnView: {
 
-    height:50,
+    height:'100%',
     width:150,
     justifyContent:'center',
-    marginRight:10,
     alignSelf:'flex-end',
     borderRadius:10,
     
   },
   getStart :{
-    fontSize:24,
+    fontSize:18,
     fontWeight:'700',
     color:'white',
     textAlign:'center'

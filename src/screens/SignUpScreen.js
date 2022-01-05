@@ -137,7 +137,7 @@ const SignUpScreen = ({navigation}) => {
             <View style={[{flexDirection:'row'},styles.textbox]}>
                  {/* <Text style={{fontWeight:'700',fontSize:22}}>Email</Text> */}
                  <View style={{flex:0.1,justifyContent:'center'}}>
-                   <MaterialIcon style={{alignSelf:'center'}} name="account" size={20}/>
+                   <MaterialIcon style={{alignSelf:'center',color:'black'}} name="account" size={20}/>
                  </View>
                 <View  style={{flex:1}}>
                   <TextInput
@@ -145,6 +145,7 @@ const SignUpScreen = ({navigation}) => {
                     onChangeText={text => setUserHandler(text)}
                     value={username}
                     placeholder="enter username"
+                    placeholderTextColor={'gray'}
                   />
                 </View>
               
@@ -152,7 +153,7 @@ const SignUpScreen = ({navigation}) => {
               <View style={[{flexDirection:'row'},styles.textbox]}>
                  {/* <Text style={{fontWeight:'700',fontSize:22}}>Email</Text> */}
                  <View style={{flex:0.1,justifyContent:'center'}}>
-                   <MaterialIcon style={{alignSelf:'center'}} name="account" size={20}/>
+                   <MaterialIcon style={{alignSelf:'center',color:'black'}} name="account" size={20}/>
                  </View>
                 <View  style={{flex:1}}>
                   <TextInput
@@ -160,6 +161,7 @@ const SignUpScreen = ({navigation}) => {
                     onChangeText={text => setFullNameHandler(text)}
                     value={fullname}
                     placeholder="enter full name"
+                    placeholderTextColor={'gray'}
                   />
                 </View>
               
@@ -167,7 +169,7 @@ const SignUpScreen = ({navigation}) => {
             <View style={[{flexDirection:'row'},styles.textbox]}>
                  {/* <Text style={{fontWeight:'700',fontSize:22}}>Email</Text> */}
                  <View style={{flex:0.1,justifyContent:'center'}}>
-                   <MaterialIcon style={{alignSelf:'center'}} name="email" size={20}/>
+                   <MaterialIcon style={{alignSelf:'center',color:'black'}} name="email" size={20}/>
                  </View>
                 <View  style={{flex:1}}>
                   <TextInput
@@ -175,6 +177,7 @@ const SignUpScreen = ({navigation}) => {
                     onChangeText={text => setEmailHandler(text)}
                     value={email}
                     placeholder="enter email"
+                    placeholderTextColor={'gray'}
                   />
                 </View>
               
@@ -183,7 +186,7 @@ const SignUpScreen = ({navigation}) => {
                 <View style={[{flexDirection:'row',marginTop:10},styles.textbox]}>
                   {/* <Text style={{fontWeight:'700',fontSize:22}}>Password</Text> */}
                   <View style={{flex:0.1,justifyContent:'center'}}>
-                   <MaterialIcon style={{alignSelf:'center'}} name="lock" size={20}/>
+                   <MaterialIcon style={{alignSelf:'center',color:'black'}} name="lock" size={20}/>
                  </View>
                  <View  style={{flex:1}}>
                     <TextInput
@@ -193,6 +196,7 @@ const SignUpScreen = ({navigation}) => {
                         onChangeText={text => setPwdHandler(text)}
                         value={pwd}
                         placeholder="enter password"
+                        placeholderTextColor={'gray'}
                       />
                  </View>
                 
@@ -202,7 +206,7 @@ const SignUpScreen = ({navigation}) => {
                 <View style={[{flexDirection:'row',marginTop:10},styles.textbox]}>
                   {/* <Text style={{fontWeight:'700',fontSize:22}}>Password</Text> */}
                   <View style={{flex:0.1,justifyContent:'center'}}>
-                   <MaterialIcon style={{alignSelf:'center'}} name="lock" size={20}/>
+                   <MaterialIcon style={{alignSelf:'center',color:'black'}} name="lock" size={20}/>
                  </View>
                  <View  style={{flex:1}}>
                     <TextInput
@@ -213,6 +217,7 @@ const SignUpScreen = ({navigation}) => {
                         onChangeText={text => setConfirmPwdHandler(text)}
                         value={confirmPwd}
                         placeholder="enter confirm password"
+                        placeholderTextColor={'gray'}
                       />
                  </View>
                 
@@ -224,7 +229,7 @@ const SignUpScreen = ({navigation}) => {
                 </TouchableOpacity>
                 <View style={{height:1,backgroundColor:'black',marginTop:20}}>
                 </View>
-                <Text style={{alignSelf:'center',top:-12,backgroundColor:'white',fontWeight:'700',fontSize:18}}>OR</Text>
+                <Text style={{alignSelf:'center',top:-12,backgroundColor:'white',fontWeight:'700',fontSize:18,color:'black'}}>OR</Text>
 
                
 
@@ -261,7 +266,7 @@ const styles = StyleSheet.create({
   password :{ 
     fontSize:18,
     paddingLeft:10,
-    
+    color:'black',
     fontWeight:'700',
    },
 
@@ -316,7 +321,8 @@ fbBtn : {
 email: {
   fontSize:18,
   fontWeight:'700',
-  paddingLeft:10
+  paddingLeft:10,
+  color:'black'
  },
 
 textbox: { height: 50,
@@ -326,6 +332,7 @@ textbox: { height: 50,
   elevation:5,
  borderColor: 'gray', 
  borderWidth: 0.5,
+ color:'black',
 borderColor:'transparent' },
 
 })

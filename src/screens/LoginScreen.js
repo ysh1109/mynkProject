@@ -38,7 +38,7 @@ const LoginScreen = ({navigation}) => {
             .signInWithEmailAndPassword(email, password)
             .then((response) => {
               console.log("login response",response)
-              ToastAndroid.show("Welcome to Travel", ToastAndroid.LONG);
+              ToastAndroid.show("Welcome to RPTS", ToastAndroid.LONG);
               navigation.navigate('Home',{username:email,admin:false})
             })
             .catch(error => {
@@ -81,16 +81,15 @@ const LoginScreen = ({navigation}) => {
             duration={1000}
             animation="fadeInLeft"
             style={{
-              fontSize: 28,
+              fontSize: 22,
               fontWeight: '700',
               color: 'white',
               letterSpacing: 2,
               textAlign:'center',
               alignSelf: 'center',
             }}>
-            Welcome! {"\n"}
-            To {"\n"}
-            Travel
+            Railway Patrolman {"\n"}
+            Tracking System
           </Animatable.Text>
         
           <Animatable.Image
@@ -113,7 +112,7 @@ const LoginScreen = ({navigation}) => {
             {/* <Text style={{fontWeight:'700',fontSize:22}}>Email</Text> */}
             <View style={{flex: 0.1, justifyContent: 'center'}}>
               <MaterialIcon
-                style={{alignSelf: 'center'}}
+                style={{alignSelf: 'center',color:'black'}}
                 name="email"
                 size={20}
               />
@@ -124,13 +123,14 @@ const LoginScreen = ({navigation}) => {
                 onChangeText={(text) => setEmail(text)}
                 value={email}
                 placeholder="enter email"
+                placeholderTextColor={'gray'}
               />
             </View>
           </View>
           <View style={[{flexDirection: 'row', marginTop: 10}, styles.textbox]}>
             {/* <Text style={{fontWeight:'700',fontSize:22}}>Password</Text> */}
             <View style={{flex: 0.1, justifyContent: 'center'}}>
-              <Icon style={{alignSelf: 'center'}} name="lock" size={20} />
+              <Icon style={{alignSelf: 'center',color:'black'}} name="lock" size={20} />
             </View>
             <View style={{flex: 1}}>
               <TextInput
@@ -140,6 +140,7 @@ const LoginScreen = ({navigation}) => {
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                 placeholder="enter password"
+                placeholderTextColor={'gray'}
               />
             </View>
           </View>
@@ -149,7 +150,7 @@ const LoginScreen = ({navigation}) => {
             <Text style={styles.loginBtnText}>Login</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.signUpBtn}>
+          {/* <TouchableOpacity style={styles.signUpBtn}>
             <Text
               style={{
                 color: 'black',
@@ -161,7 +162,7 @@ const LoginScreen = ({navigation}) => {
               }}>
               Forgot Password ?
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
  
           <TouchableOpacity
             onPress={() => {
@@ -207,6 +208,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     paddingLeft: 10,
+    color:"black"
   },
 
   textbox: {
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
   password: {
     fontSize: 18,
     paddingLeft: 10,
-
+    color:'black',
     fontWeight: '700',
     borderColor: 'gray',
   },

@@ -59,7 +59,7 @@ const DescScreen = ({navigation,route}) => {
             <Animatable.View
               animation="fadeInRight"  
              style={[styles.btn,{position:'absolute',bottom:0,marginTop:20}]}>
-              <Text style={styles.getStart}>Explore More</Text>
+              <Text style={styles.getStart}>Back to List</Text>
             
             </Animatable.View>
             </TouchableOpacity>
